@@ -1,3 +1,5 @@
+// const { Nuxt, Builder } = require('nuxt')
+// const NuxtConfig = require('./nuxt.config.js')
 const Koa = require('koa')
 const app = new Koa()
 const cors = require('koa2-cors')
@@ -193,8 +195,9 @@ app.use(async (ctx, next) => {
 //   await next()
 // })
 
-app.use(index.routes(), index.allowedMethods())
+// app.use(index.routes(), index.allowedMethods())
 app.use(api.routes(), api.allowedMethods())
+
 
 // error-handling
 app.on('error', (err, ctx) => {
@@ -202,5 +205,14 @@ app.on('error', (err, ctx) => {
 
   ctx.body = err
 })
+
+// 我们用这些选项初始化 Nuxt.js：
+// const nuxt = new Nuxt(NuxtConfig)
+// // 生产模式不需要 build
+// if (!NuxtConfig.dev) {
+//   const builder = new Builder(nuxt)
+//   builder.build()
+// }
+// app.use(nuxt.render)
 
 module.exports = app

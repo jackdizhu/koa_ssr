@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node bin/www",
     "dev": "./node_modules/.bin/nodemon bin/www",
+    "ssr": "./node_modules/.bin/nodemon ssr.js",
     "prd": "pm2 start bin/www",
     "eslint": "eslint --ignore-path .gitignore  . --quiet --ext .vue,.js",
     "test": "echo \"Error: no test specified\" && exit 1"
