@@ -29,6 +29,7 @@ export default {
   },
   data () {
     return {
+      itemList: {},
       list: {}
     }
   },

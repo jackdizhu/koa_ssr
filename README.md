@@ -4,6 +4,7 @@
 * vue ssr 部分数据渲染
 * https 请求问题 待处理
 * 页面包含子组件时 asyncData 子组件方法无效
+* asyncData 返回属性 与data 同名是 会覆盖data 数据
 
 # 问题记录
 
@@ -83,4 +84,18 @@ async asyncData ({ store, route, _this, params }, callback) {
   return _R
 }
 export default store
+// 路由处理 _nuxt __webpack 登录不进行 token 验证
+unless({
+  // 数组中的路径不需要通过jwt验证
+  // /^\/file_v[0-9]\/[a-zA-Z]+/,
+  method: ['OPTIONS'],
+  path: [
+    /^\/$/,
+    /^\/favicon.ico$/,
+    /^\/api/,
+    /^\/itemList/,
+    /^\/_nuxt/,
+    /^\/__webpack[_a-z]+/,
+  ]
+})
 ```

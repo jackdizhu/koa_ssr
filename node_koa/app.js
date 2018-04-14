@@ -124,6 +124,8 @@ app.use(koaJwt(
     /^\/favicon.ico$/,
     /^\/api/,
     /^\/itemList/,
+    /^\/_nuxt/,
+    /^\/__webpack[_a-z]+/,
   ]
 }))
 
