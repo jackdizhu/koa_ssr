@@ -84,7 +84,7 @@ async asyncData ({ store, route, _this, params }, callback) {
   return _R
 }
 export default store
-// 路由处理 _nuxt __webpack 登录不进行 token 验证
+// 路由处理 _nuxt __webpack 不进行token 验证
 unless({
   // 数组中的路径不需要通过jwt验证
   // /^\/file_v[0-9]\/[a-zA-Z]+/,
