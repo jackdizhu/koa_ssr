@@ -3,6 +3,7 @@
 * node_koa 负责后端api 接口
 * vue ssr 部分数据渲染
 * https 请求问题 待处理
+* 页面包含子组件时 asyncData 子组件方法无效
 
 # 问题记录
 

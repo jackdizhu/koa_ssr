@@ -1,10 +1,13 @@
 <template>
   <div class="em-index">
-    <div class="itemList" @click="editItemId(itemList)">
-      item1--{{getItemId}}
+    <div class="itemList">
+      item2
     </div>
     <div class="ul-box">
-      {{itemList}}
+      item2--{{item2}}
+    </div>
+    <div class="ul-box">
+      itemListfn--{{itemListfn}}
     </div>
   </div>
 </template>
@@ -15,10 +18,12 @@
 
 <script>
 import * as api from '../../api'
+// import VItem1 from './item1.vue'
 import { mapGetters, mapActions, mapState } from 'vuex'
 export default {
   name: 'index',
   components: {
+    // VItem1
   },
   data () {
     return {
@@ -26,33 +31,33 @@ export default {
     }
   },
   // 该方法会在 页面加载前执行
-  asyncData ({ store, route, _this, callBack }) {
-    return new Promise((resolve, reject) => {
-      let _li = store.itemList
-      api.item.getList({
-        params: {
-          key: _li
-        }
-      }).then((res) => {
-        if (res && res.data && res.success) {
-          // 通过 store.commit 保存到vuex 共享数据
-          store.commit('itemList/SET_VALUE', res.data || {})
-          resolve(res.data)
-        } else {
-          resolve({})
-        }
-      })
+  async asyncData ({ store, route, _this, params }, callback) {
+    let _li = store.itemList
+    let res = await api.item.getList({
+      params: {
+        key: _li
+      }
     })
+    let _R = {}
+    if (res && res.data && res.success) {
+      console.log(res.data, '--------------> item2 asyncData')
+      _R = { item2: res.data }
+    } else {
+      _R = { item2: {} }
+    }
+    // store.commit('itemList/SET_VALUE', _R.itemList)
+    callback(null, _R)
+    return _R
   },
   mounted () {
   },
   computed: {
-    ...mapGetters('itemList', [
-      'getItemId'
-    ]),
-    ...mapState([
-      'itemList'
-    ]),
+    // ...mapGetters('itemList', [
+    //   'getItemId'
+    // ]),
+    // ...mapState([
+    //   'itemList'
+    // ]),
     itemListfn () {
       return this.$store.state.itemList
     }

@@ -42,11 +42,12 @@ export default {
     })
     let _R = {}
     if (res && res.data && res.success) {
-      console.log(res.data, '--------------> asyncData')
+      console.log(res.data, '--------------> itemList asyncData')
       _R = { itemList: res.data }
     } else {
       _R = { itemList: {} }
     }
+    store.commit('itemList/SET_VALUE', _R.itemList)
     callback(null, _R)
     return _R
   },

@@ -123,6 +123,7 @@ app.use(koaJwt(
     /^\/$/,
     /^\/favicon.ico$/,
     /^\/api/,
+    /^\/itemList/,
   ]
 }))
 
@@ -197,7 +198,6 @@ app.use(async (ctx, next) => {
 
 // app.use(index.routes(), index.allowedMethods())
 app.use(api.routes(), api.allowedMethods())
-
 
 // error-handling
 app.on('error', (err, ctx) => {
