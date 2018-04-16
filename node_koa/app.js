@@ -1,5 +1,6 @@
 // const { Nuxt, Builder } = require('nuxt')
 // const NuxtConfig = require('./nuxt.config.js')
+const config = require('./config')
 const Koa = require('koa')
 const app = new Koa()
 const cors = require('koa2-cors')
@@ -9,8 +10,8 @@ const path = require('path')
 // const util = require('util')
 // 解密
 // const verify = util.promisify(jwt.verify)
-// 加盐 key
-const secret = 'lqwiuerpowjflaskdjffkhgoiwurpoqdjlsakjflsdkf'
+// 加盐 secret
+const secret = config.jwt.secret
 
 const views = require('koa-views')
 const json = require('koa-json')
@@ -33,7 +34,7 @@ onerror(app)
 // api 服务器 允许跨域
 app.use(cors({
   // Access-Control-Allow-Origin
-  origin: function(ctx) {
+  origin: function (ctx) {
     // if (ctx.url === '/test') {
     //   return false;
     // }
@@ -48,7 +49,7 @@ app.use(cors({
   // Access-Control-Allow-Methods
   allowMethods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
   // Access-Control-Allow-Headers
-  allowHeaders: ['Content-Type', 'Authorization'],
+  allowHeaders: ['Content-Type', 'Authorization']
 }))
 
 app.use(logger())
@@ -125,7 +126,7 @@ app.use(koaJwt(
     /^\/api/,
     /^\/itemList/,
     /^\/_nuxt/,
-    /^\/__webpack[_a-z]+/,
+    /^\/__webpack[_a-z]+/
   ]
 }))
 
@@ -144,7 +145,6 @@ app.use(json())
 //   // 设置是否允许发送 cookie
 //   // ctx.set("Access-Control-Allow-Credentials", true)
 // })
-
 
 // logger
 // app.use(async (ctx, next) => {
@@ -185,6 +185,7 @@ app.use(async (ctx, next) => {
     }
 
     if (ctx.body) {
+      ctx.body.success = true
       ctx.body.path = ctx.path
       ctx.body.query = ctx.query
       ctx.body.body = ctx.request.body

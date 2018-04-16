@@ -1,5 +1,6 @@
 const router = require('koa-router')()
 const Mock = require('mockjs')
+const config = require('../config')
 
 const jwt = require('jsonwebtoken')
 const util = require('util')
@@ -8,8 +9,9 @@ const sendMail = require('../com/sendMail')
 // const log = require('./com/log')()
 // 解密
 const verify = util.promisify(jwt.verify)
-// 加盐 key
-const secret = 'lqwiuerpowjflaskdjffkhgoiwurpoqdjlsakjflsdkf'
+// 加盐 secret
+const secret = config.jwt.secret
+const expire = config.jwt.expire
 
 router.prefix('/api')
 
@@ -41,7 +43,7 @@ router.get('/log', async (ctx, next) => {
   log(ctx.body)
 })
 
-async function fn_async1() {
+async function fn_async1 () {
   console.log('fn_async1 执行1')
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -50,7 +52,7 @@ async function fn_async1() {
     }, 500)
   })
 }
-async function fn_async2() {
+async function fn_async2 () {
   console.log('fn_async2 执行1')
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -94,14 +96,14 @@ router.get('/async2', async (ctx, next) => {
 })
 // 并发执行 await 等待结果
 router.get('/async3', async (ctx, next) => {
-  let async1 = fn_async1();
-  let async2 = fn_async2();
+  let async1 = fn_async1()
+  let async2 = fn_async2()
 
   console.log('fn_async1 开始')
-  let _async1 = await async1;
+  let _async1 = await async1
   console.log(async1, 'fn_async1 结束')
   console.log('fn_async2 开始')
-  let _async2 = await async2;
+  let _async2 = await async2
   console.log(async2, 'fn_async2 结束')
 
   let _obj = {
@@ -181,10 +183,10 @@ router.get('/sendMail', async (ctx, next) => {
 
 router.get('/', async (ctx, next) => {
   let userToken = {
-    name: 'user.name'
+    name: 'username'
   }
   // token签名 有效期为1小时
-  const token = jwt.sign(userToken, secret, { expiresIn: '1h' })
+  const token = jwt.sign(userToken, secret, { expiresIn: expire })
   // ctx.request.header['token'] = token
   // ctx.res.setHeader('token', token)
   ctx.cookies.set('token', token)

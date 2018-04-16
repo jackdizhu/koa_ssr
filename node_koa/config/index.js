@@ -6,9 +6,9 @@ module.exports = {
     'key': 'user',
     'expire': '14 days',
     'collection': 'tokens',
-    'secret': 'shared-secret'
+    'secret': 'c55416ad4470e354e22a70286f81e741'
   },
-  "smtp": {
+  'smtp': {
     'user': '**********@qq.com',
     'pass': 'sqwqiezcxtjdbgbb'
   }
