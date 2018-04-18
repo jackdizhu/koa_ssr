@@ -5,6 +5,7 @@
 <!-- * https 请求问题 待处理 -->
 * 页面包含子组件时 asyncData 子组件方法无效
 * asyncData 返回属性 与data 同名是 会覆盖data 数据
+* beforeCreate created 会在ssr(服务端)阶段执行 beforeMount mounted 会在浏览器执行
 
 # 问题记录
 

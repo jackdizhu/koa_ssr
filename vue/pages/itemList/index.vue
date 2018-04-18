@@ -3,6 +3,7 @@
     <div class="itemList" @click="editItemId(itemList)">
       itemList--{{itemList._id}}
     </div>
+    <p>list--{{list}}</p>
     <div class="ul-box">
       {{itemList}}
     </div>
@@ -22,6 +23,7 @@
 import * as api from '../../api'
 import VItem1 from './item1.vue'
 import { mapGetters, mapActions, mapState } from 'vuex'
+let beforeCreate = {}
 export default {
   name: 'index',
   components: {
@@ -30,7 +32,12 @@ export default {
   data () {
     return {
       itemList: {},
-      list: {}
+      list: {
+        beforeCreate: beforeCreate,
+        created: '',
+        beforeMount: '',
+        mounted: ''
+      }
     }
   },
   // 该方法会在 页面加载前执行
@@ -52,7 +59,25 @@ export default {
     callback(null, _R)
     return _R
   },
+  // el 和 data 并未初始化
+  beforeCreate () {
+    beforeCreate = 'beforeCreate'
+    console.log('beforeCreate')
+  },
+  // 完成了 data 数据的初始化，el没有
+  created () {
+    this.list.created = 'created'
+    console.log('created')
+  },
+  // 完成了 el 和 data 初始化
+  beforeMount () {
+    this.list.beforeMount = 'beforeMount'
+    console.log('beforeMount')
+  },
+  // 完成挂载
   mounted () {
+    this.list.mounted = 'mounted'
+    console.log('mounted')
   },
   computed: {
     // ...mapGetters('itemList', [
