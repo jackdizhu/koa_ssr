@@ -2,14 +2,14 @@
 
 * node_koa 负责后端api 接口
 * vue ssr 部分数据渲染
-* https 请求问题 待处理
+<!-- * https 请求问题 待处理 -->
 * 页面包含子组件时 asyncData 子组件方法无效
 * asyncData 返回属性 与data 同名是 会覆盖data 数据
 
 # 问题记录
 
 ``` js
-// http.js 配置 删除
+// http.js 配置 删除 https 服务端请求数据报错
 axios.defaults.httpsAgent = new https.Agent({
   rejectUnauthorized: false
 })
