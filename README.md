@@ -9,6 +9,10 @@
 # 问题记录
 
 ``` js
+// http.js 配置 删除
+axios.defaults.httpsAgent = new https.Agent({
+  rejectUnauthorized: false
+})
 // state 必须是 方法
 state: () => {
   return {
