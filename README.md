@@ -6,6 +6,8 @@
 * 页面包含子组件时 asyncData 子组件方法无效
 * asyncData 返回属性 与data 同名是 会覆盖data 数据
 * beforeCreate created 会在ssr(服务端)阶段执行 beforeMount mounted 会在浏览器执行
+* layouts --> default.vue 基础模板 所有页面会继承
+* nuxt 子路由 <nuxt-child/> 代替 <router-view></router-view>
 
 # 问题记录
 

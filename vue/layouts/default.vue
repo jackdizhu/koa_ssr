@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-box">
     <nuxt/>
   </div>
 </template>
@@ -48,5 +48,12 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+.page-box {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 10px;
 }
 </style>

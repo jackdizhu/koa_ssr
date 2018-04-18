@@ -6,9 +6,9 @@
         <router-link to="/itemList" class="link">itemList</router-link>
       </p>
     </div>
-    <transition name="fade" mode="out-in">
+    <!-- <transition name="fade" mode="out-in">
       <router-view></router-view>
-    </transition>
+    </transition> -->
   </div>
 </template>
 
@@ -29,11 +29,5 @@ export default {
 
 <style>
 
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  padding: 10px;
-}
 </style>
 
