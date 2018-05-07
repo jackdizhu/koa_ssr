@@ -9,6 +9,10 @@
 * layouts --> default.vue 基础模板 所有页面会继承
 * nuxt 子路由 <nuxt-child/> 代替 <router-view></router-view>
 
+# prerender-spa-plugin 预渲染
+
+* [预渲染仓库地址](https://github.com/jackdizhu/vue_dev/tree/preRender)
+
 # 问题记录
 
 ``` js
